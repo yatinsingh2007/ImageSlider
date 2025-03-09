@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 
 const ImageSlider = () => {
     const listImages = [
@@ -17,39 +17,41 @@ const ImageSlider = () => {
     const [index, setIndex] = useState(0);
 
     return (
-        <div className='bg-black min-h-screen flex flex-col items-center justify-center min-w-screen'>
-            <h1 className='font-mono text-white text-center pt-12'>Image Slider</h1>
-            <div className='flex justify-center items-center pt-10'>
-                <img src={listImages[index]} alt='slider' className='h-72 rounded-lg shadow-lg' />
+        <Fragment>
+            <div className='bg-black min-h-screen flex flex-col items-center justify-center min-w-screen'>
+                <h1 className='font-mono text-white text-center pt-12'>Image Slider</h1>
+                <div className='flex justify-center items-center pt-10'>
+                    <img src={listImages[index]} alt='slider' className='h-72 rounded-lg shadow-lg' />
+                </div>
+                <div className='flex justify-center gap-6 pt-8'>
+                    <button 
+                        className='bg-white text-black rounded p-2' 
+                        onClick={() => setIndex(index => {
+                            if (index === 0) {
+                                return listImages.length - 1;
+                            }
+                            return index - 1;
+                        })}
+                    >Previous
+                    </button>
+                    <button 
+                        className='bg-white text-black rounded p-2'
+                        onClick={() => setIndex(0)}
+                    >Reset
+                    </button>
+                    <button 
+                        className='bg-white text-black rounded p-2' 
+                        onClick={() => setIndex(index => {
+                            if (index === listImages.length - 1) {
+                                return 0;
+                            }
+                            return index + 1;
+                        })}
+                    >Next
+                    </button>
+                </div>
             </div>
-            <div className='flex justify-center gap-6 pt-8'>
-                <button 
-                    className='bg-white text-black rounded p-2' 
-                    onClick={() => setIndex(index => {
-                        if (index === 0) {
-                            return listImages.length - 1;
-                        }
-                        return index - 1;
-                    })}
-                >Previous
-                </button>
-                <button 
-                    className='bg-white text-black rounded p-2'
-                    onClick={() => setIndex(0)}
-                >Reset
-                </button>
-                <button 
-                    className='bg-white text-black rounded p-2' 
-                    onClick={() => setIndex(index => {
-                        if (index === listImages.length - 1) {
-                            return 0;
-                        }
-                        return index + 1;
-                    })}
-                >Next
-                </button>
-            </div>
-        </div>
+        </Fragment>
     );
 };
 export default ImageSlider;
