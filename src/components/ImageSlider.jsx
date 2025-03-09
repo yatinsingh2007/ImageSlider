@@ -1,5 +1,4 @@
 import React, { Fragment, useState } from 'react';
-
 const ImageSlider = () => {
     const listImages = [
         'https://wallpapers.com/images/featured/cool-anime-6kbwj9794wpnsfr1.jpg',
